@@ -1,9 +1,9 @@
 package org.SpringBoot.onus;
 
 
-import org.SpringBoot.onus.Controllers.UserController;
+import org.SpringBoot.onus.Controllers.CustomerController;
 import org.SpringBoot.onus.Models.Customer;
-import org.SpringBoot.onus.Repositories.UserRepository;
+import org.SpringBoot.onus.Repositories.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -24,15 +24,13 @@ public class Application {
     }
 
     @Bean
-    CommandLineRunner init(UserRepository userRepository) {
-        UserController userController = new UserController(userRepository);
+    CommandLineRunner init(CustomerRepository customerRepository) {
+        CustomerController customerController = new CustomerController(customerRepository);
         Customer user = new Customer("Faris", "Ibrahim", "Daoud", "Ansara");
         Customer user2 = new Customer("Tarik","Ibrahim", "Daoud", "Ansara");
         return args -> {
-            userRepository.save(user);
-            userController.addUser(user);
-            userRepository.save(user2);
-            userController.addUser(user2);
+            customerController.addUser(user);
+            customerController.addUser(user2);
         };
     }
 }

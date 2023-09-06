@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler{
-
     @ExceptionHandler(value = NameWithNullValueException.class)
-    public static ResponseEntity<Object> exception(NameWithNullValueException exception) {
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    public static ResponseEntity<Object> handleNameWithNullValueException(NameWithNullValueException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

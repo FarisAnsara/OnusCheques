@@ -2,12 +2,10 @@ package org.SpringBoot.onus.Models;
 
 import jakarta.persistence.*;
 import org.SpringBoot.onus.Services.GenerateAccountNumber;
-//import org.SpringBoot.onus.Services.GenerateAccountNumber;
 
 @Entity
 //@SequenceGenerator(name = "seq",initialValue = 100,allocationSize = 1000)
 public class Customer {
-
     @Id
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long accountNumber;
