@@ -1,4 +1,4 @@
-package org.SpringBoot.onus.Exceptions;
+package org.SpringBoot.onus.Exceptions.CustomerExceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

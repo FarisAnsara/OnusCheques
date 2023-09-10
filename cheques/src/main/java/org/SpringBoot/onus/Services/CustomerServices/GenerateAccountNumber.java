@@ -1,4 +1,4 @@
-package org.SpringBoot.onus.Services;
+package org.SpringBoot.onus.Services.CustomerServices;
 
 public class GenerateAccountNumber{
     public static Long generate(){

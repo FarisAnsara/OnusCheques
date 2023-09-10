@@ -1,4 +1,4 @@
-package org.SpringBoot.onus.Exceptions;
+package org.SpringBoot.onus.Exceptions.PayerExceptions;
 
 public class PayerAccountIsInvalidException extends IllegalArgumentException{
     public PayerAccountIsInvalidException(String s) {

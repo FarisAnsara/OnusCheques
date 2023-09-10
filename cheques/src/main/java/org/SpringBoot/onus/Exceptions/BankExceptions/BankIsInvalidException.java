@@ -1,4 +1,4 @@
-package org.SpringBoot.onus.Exceptions;
+package org.SpringBoot.onus.Exceptions.BankExceptions;
 
 public class BankIsInvalidException extends IllegalArgumentException{
     public BankIsInvalidException(String s) {

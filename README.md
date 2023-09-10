@@ -16,7 +16,7 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 ```
 cd existing_repo
 git remote add origin https://gitlab.com/progresssoft-intern-taks/onus-cheque.git
-git branch -M main
+git branchEntity -M main
 git push -uf origin main
 ```
 

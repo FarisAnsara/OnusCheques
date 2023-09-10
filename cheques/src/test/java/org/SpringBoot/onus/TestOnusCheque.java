@@ -1,10 +1,9 @@
 package org.SpringBoot.onus;
 
-import org.SpringBoot.onus.Controllers.CustomerController;
-import org.SpringBoot.onus.Exceptions.NameWithNullValueException;
-import org.SpringBoot.onus.Models.Customer;
-import org.SpringBoot.onus.Repositories.CustomerRepository;
-import org.SpringBoot.onus.Services.CustomerControllerImpl;
+import org.SpringBoot.onus.Exceptions.CustomerExceptions.NameWithNullValueException;
+import org.SpringBoot.onus.Repositories.BankRepository;
+import org.SpringBoot.onus.Repositories.BranchRepository;
+import org.SpringBoot.onus.Services.CustomerServices.CustomerControllerImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
@@ -39,6 +38,10 @@ public class TestOnusCheque {
 
     @Mock
     CustomerRepository customerRepository;
+    @Mock
+    BankRepository bankRepository;
+    @Mock
+    BranchRepository branchRepository;
 
     @BeforeEach
     public void init() {
@@ -102,6 +105,17 @@ public class TestOnusCheque {
         Customer customer = new Customer("Faris", "Ibrahim", "Daoud", null);
         when(customerController.addUser(customer)).thenThrow(new NameWithNullValueException("Cannot have last name empty"));
         assertThrows(NameWithNullValueException.class, ( ) -> customerController.addUserTest(customer));
+    }
+
+    @Test
+    public void givenNewBank_whenGenerateNewBank_thenSaveNewBank() {
+        Customer customer = new Customer("Faris", "Ibrahim", "Daoud", "Ansara");
+//        Branch branch = new Branch("Shemiesani");
+//        Bank bank = new Bank("HSBC", branch, Collections.singleton(customer));
+//        when(bankRepository.save(bank)).thenReturn(bank);
+//        Bank savedBank = bankRepository.save(bank);
+//        verify(bankRepository,times(1)).save(bank);
+//        assertNotNull(savedBank);
     }
 
 //    @Test
