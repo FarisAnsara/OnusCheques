@@ -14,9 +14,7 @@ public class BranchEntity {
 
     @Override
     public String toString() {
-        return "Branch{" +
-                "branchId=" + branchId +
-                '}';
+        return "Branch{" + "branchId=" + branchId + '}';
     }
 
     public BranchEntity(BranchId branchId) {

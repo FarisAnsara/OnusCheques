@@ -1,23 +1,37 @@
 package org.SpringBoot.onus.Services.CustomerServices;
 
-import org.SpringBoot.onus.Exceptions.BranchExceptions.BranchIsInvalidException;
+import org.SpringBoot.onus.Exceptions.BankExceptions.BankDoesNotExistException;
 import org.SpringBoot.onus.Exceptions.CustomerExceptions.CustomerAlreadyExistsWithinBankException;
 import org.SpringBoot.onus.Exceptions.CustomerExceptions.NameWithNullValueException;
+import org.SpringBoot.onus.Exceptions.CustomerExceptions.NationalIdIsNullException;
 import org.SpringBoot.onus.Models.CustomerModels.CreateCustomerRequest;
 import org.SpringBoot.onus.Repositories.BankRepository;
 import org.SpringBoot.onus.Repositories.BranchRepository;
 import org.SpringBoot.onus.Repositories.CustomerEntityRepository;
 import org.SpringBoot.onus.entities.BankEntity;
-import org.SpringBoot.onus.entities.BranchEntity;
 import org.SpringBoot.onus.entities.CustomerEntity;
 
 public class CutomerServiceImpl implements CustomerService {
     @Override
     public CustomerEntity loadBranch(CreateCustomerRequest customerRequest, BankRepository bankRepository, BranchRepository branchRepository, CustomerEntityRepository customerEntityRepository) {
         ifAnyOfNameIsNullThrow(customerRequest);
+        ifNationalIdNullThrow(customerRequest.getNationalId());
         BankEntity bank = bankRepository.findBankByBankId_Id(customerRequest.getBankId());
+        ifBankisNullThenThrow(bank);
         checkIfCustomerExistWithinBank(customerRequest, customerEntityRepository, bank);
         return getCustomerEntity(customerRequest, customerEntityRepository, bank);
+    }
+
+    private void ifBankisNullThenThrow(BankEntity bank) {
+        if(bank == null){
+            throw new BankDoesNotExistException("Bank does not exist");
+        }
+    }
+
+    private void ifNationalIdNullThrow(long nationalId) {
+        if(nationalId == 0){
+            throw new NationalIdIsNullException("National Id cannot be zero");
+        }
     }
 
     private static void checkIfCustomerExistWithinBank(CreateCustomerRequest customerRequest, CustomerEntityRepository customerEntityRepository, BankEntity bank) {

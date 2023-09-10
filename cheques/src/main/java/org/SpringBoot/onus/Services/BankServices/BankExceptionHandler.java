@@ -1,6 +1,7 @@
 package org.SpringBoot.onus.Services.BankServices;
 
 import org.SpringBoot.onus.Exceptions.BankExceptions.BankAlreadyExistsException;
+import org.SpringBoot.onus.Exceptions.BankExceptions.BankDoesNotExistException;
 import org.SpringBoot.onus.Exceptions.BankExceptions.BankIsInvalidException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,11 @@ public class BankExceptionHandler {
     @ExceptionHandler(value = BankIsInvalidException.class)
     public static ResponseEntity<Object> handleBankIsInvalidException(BankIsInvalidException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(value = BankDoesNotExistException.class)
+    public static ResponseEntity<Object> handleBankDoesNotExistException(BankDoesNotExistException excepttion){
+        return new ResponseEntity<>(excepttion.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
 }

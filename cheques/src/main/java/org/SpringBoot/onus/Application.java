@@ -33,14 +33,9 @@ public class Application {
     }
 
     @Bean
-    CommandLineRunner init(CustomerRepository customerRepository, BranchRepository branchRepository , BankRepository bankRepository) {
-        CustomerController customerController = new CustomerController(customerRepository);
+    CommandLineRunner init(BranchRepository branchRepository , BankRepository bankRepository) {
         BranchController branchController = new BranchController(branchRepository, bankRepository);
         BankController bankController = new BankController(bankRepository);
-        Customer user = new Customer("Faris", "Ibrahim", "Daoud", "Ansara");
-        Customer user2 = new Customer("Tarik","Ibrahim", "Daoud", "Ansara");
-        Set<Customer> customerSet = new HashSet<>();
-        customerSet.add(user); customerSet.add(user2);
         BankId bankId= new BankId(0,"HSBC");
         BankId bank2Id = new BankId(0,"Santander");
         BankEntity bankEntity = new BankEntity(bankId);
