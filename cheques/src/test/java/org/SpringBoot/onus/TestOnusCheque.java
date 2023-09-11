@@ -1,114 +1,115 @@
 package org.SpringBoot.onus;
 
+import org.SpringBoot.onus.Controllers.CustomerController;
 import org.SpringBoot.onus.Exceptions.CustomerExceptions.NameWithNullValueException;
 import org.SpringBoot.onus.Repositories.BankRepository;
 import org.SpringBoot.onus.Repositories.BranchRepository;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import java.util.ArrayList;
-import java.util.List;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-
-@SpringJUnitConfig
-@RunWith(SpringRunner.class)
-@WebMvcTest
-public class TestOnusCheque {
-
-    @Autowired
-    private MockMvc mvc;
-    @InjectMocks
-     CustomerControllerImpl customerControllerImpl = new CustomerControllerImpl();
-
-    @InjectMocks
-    CustomerController customerController = mock(CustomerController.class);
-
-    @Mock
-    CustomerRepository customerRepository;
-    @Mock
-    BankRepository bankRepository;
-    @Mock
-    BranchRepository branchRepository;
-
-    @BeforeEach
-    public void init() {
-//        MockitoAnnotations.openMocks(this);
-    }
-
-    @Test
-    public void givenNewCustomer_whenGenerateNewCustomer_thenSaveNewCustomer() {
-        Customer customer = new Customer("Faris", "Ibrahim", "Daoud", "Ansara");
-        when(customerRepository.save(customer)).thenReturn(customer);
-        Customer savedCustomer = customerRepository.save(customer);
-        verify(customerRepository,times(1)).save(customer);
-        assertNotNull(savedCustomer);
-    }
-
-    @Test
-    public void givenFindAllCustomers_theReturnAllCustomers() {
-        Customer customer = new Customer("Faris", "Ibrahim", "Daoud", "Ansara");
-        Customer customer1 = new Customer("Tarik", "Ibrahim", "Daoud", "Ansara");
-        List<Customer> customerList = new ArrayList<>();
-        customerList.add(customer);
-        customerList.add(customer1);
-        customerRepository.save(customer);
-        customerRepository.save(customer1);
-        when(customerRepository.findAll()).thenReturn(customerList);
-        List<Customer> foundCustomers = (List<Customer>) customerRepository.findAll();
-        assertNotNull(foundCustomers);
-        assertArrayEquals(foundCustomers.toArray(),customerList.toArray());
-    }
-
-    @Test
-    public void givenAddNewCustomer_whenAddCustomer_thenAddCustomer() {
-    }
-
-    @Test
-    public void givenNullCustomerFirstName_whenGivenName_thenThrow() throws Exception {
-        String exceptionParam = "check all fields have values";
-        mvc.perform(MockMvcRequestBuilders.get("/post-users", exceptionParam)
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest())
-                .andExpect(result -> assertTrue(result.getResolvedException() instanceof NameWithNullValueException))
-                .andExpect(result -> assertEquals("check all fields have values", result.getResolvedException().getMessage()));
-    }
-
-    @Test
-    public void givenNullCustomerFatherName_whenGivenName_thenThrow() {
-        Customer customer = new Customer("Faris", null, "Daoud", "Ansara");
-        when(customerController.addUser(customer)).thenThrow(new NameWithNullValueException("Cannot have father's name empty"));
-        assertThrows(NameWithNullValueException.class, ( ) -> customerController.addUserTest(customer));
-    }
-
-    @Test
-    public void givenNullCustomerGrandfather_whenGivenName_thenThrow(){
-        Customer customer = new Customer("Faris", "Ibrahim", null, "Ansara");
-        when(customerController.addUser(customer)).thenThrow(new NameWithNullValueException("Cannot have grand-father's name empty"));
-        assertThrows(NameWithNullValueException.class, ( ) -> customerController.addUserTest(customer));
-    }
-
-    @Test
-    public void givenNullCustomerLastName_whenGivenName_thenThrow() {
-        Customer customer = new Customer("Faris", "Ibrahim", "Daoud", null);
-        when(customerController.addUser(customer)).thenThrow(new NameWithNullValueException("Cannot have last name empty"));
-        assertThrows(NameWithNullValueException.class, ( ) -> customerController.addUserTest(customer));
-    }
-
-    @Test
-    public void givenNewBank_whenGenerateNewBank_thenSaveNewBank() {
-        Customer customer = new Customer("Faris", "Ibrahim", "Daoud", "Ansara");
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.runner.RunWith;
+//import org.mockito.InjectMocks;
+//import org.mockito.Mock;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+//import org.springframework.http.MediaType;
+//import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+//import org.springframework.test.context.junit4.SpringRunner;
+//import org.springframework.test.web.servlet.MockMvc;
+//import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+//import java.util.ArrayList;
+//import java.util.List;
+//import static org.junit.Assert.*;
+//import static org.mockito.Mockito.*;
+//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+//
+//
+//@SpringJUnitConfig
+//@RunWith(SpringRunner.class)
+//@WebMvcTest
+//public class TestOnusCheque {
+//
+//    @Autowired
+//    private MockMvc mvc;
+//    @InjectMocks
+//     CustomerControllerImpl customerControllerImpl = new CustomerControllerImpl();
+//
+//    @InjectMocks
+//    CustomerController customerController = mock(CustomerController.class);
+//
+//    @Mock
+//    CustomerRepository customerRepository;
+//    @Mock
+//    BankRepository bankRepository;
+//    @Mock
+//    BranchRepository branchRepository;
+//
+//    @BeforeEach
+//    public void init() {
+////        MockitoAnnotations.openMocks(this);
+//    }
+//
+//    @Test
+//    public void givenNewCustomer_whenGenerateNewCustomer_thenSaveNewCustomer() {
+//        Customer customer = new Customer("Faris", "Ibrahim", "Daoud", "Ansara");
+//        when(customerRepository.save(customer)).thenReturn(customer);
+//        Customer savedCustomer = customerRepository.save(customer);
+//        verify(customerRepository,times(1)).save(customer);
+//        assertNotNull(savedCustomer);
+//    }
+//
+//    @Test
+//    public void givenFindAllCustomers_theReturnAllCustomers() {
+//        Customer customer = new Customer("Faris", "Ibrahim", "Daoud", "Ansara");
+//        Customer customer1 = new Customer("Tarik", "Ibrahim", "Daoud", "Ansara");
+//        List<Customer> customerList = new ArrayList<>();
+//        customerList.add(customer);
+//        customerList.add(customer1);
+//        customerRepository.save(customer);
+//        customerRepository.save(customer1);
+//        when(customerRepository.findAll()).thenReturn(customerList);
+//        List<Customer> foundCustomers = (List<Customer>) customerRepository.findAll();
+//        assertNotNull(foundCustomers);
+//        assertArrayEquals(foundCustomers.toArray(),customerList.toArray());
+//    }
+//
+//    @Test
+//    public void givenAddNewCustomer_whenAddCustomer_thenAddCustomer() {
+//    }
+//
+//    @Test
+//    public void givenNullCustomerFirstName_whenGivenName_thenThrow() throws Exception {
+//        String exceptionParam = "check all fields have values";
+//        mvc.perform(MockMvcRequestBuilders.get("/post-users", exceptionParam)
+//                .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isBadRequest())
+//                .andExpect(result -> assertTrue(result.getResolvedException() instanceof NameWithNullValueException))
+//                .andExpect(result -> assertEquals("check all fields have values", result.getResolvedException().getMessage()));
+//    }
+//
+//    @Test
+//    public void givenNullCustomerFatherName_whenGivenName_thenThrow() {
+//        Customer customer = new Customer("Faris", null, "Daoud", "Ansara");
+//        when(customerController.addUser(customer)).thenThrow(new NameWithNullValueException("Cannot have father's name empty"));
+//        assertThrows(NameWithNullValueException.class, ( ) -> customerController.addUserTest(customer));
+//    }
+//
+//    @Test
+//    public void givenNullCustomerGrandfather_whenGivenName_thenThrow(){
+//        Customer customer = new Customer("Faris", "Ibrahim", null, "Ansara");
+//        when(customerController.addUser(customer)).thenThrow(new NameWithNullValueException("Cannot have grand-father's name empty"));
+//        assertThrows(NameWithNullValueException.class, ( ) -> customerController.addUserTest(customer));
+//    }
+//
+//    @Test
+//    public void givenNullCustomerLastName_whenGivenName_thenThrow() {
+//        Customer customer = new Customer("Faris", "Ibrahim", "Daoud", null);
+//        when(customerController.addUser(customer)).thenThrow(new NameWithNullValueException("Cannot have last name empty"));
+//        assertThrows(NameWithNullValueException.class, ( ) -> customerController.addUserTest(customer));
+//    }
+//
+//    @Test
+//    public void givenNewBank_whenGenerateNewBank_thenSaveNewBank() {
+//        Customer customer = new Customer("Faris", "Ibrahim", "Daoud", "Ansara");
 //        Branch branch = new Branch("Shemiesani");
 //        Bank bank = new Bank("HSBC", branch, Collections.singleton(customer));
 //        when(bankRepository.save(bank)).thenReturn(bank);

@@ -15,4 +15,5 @@ public interface BankRepository extends CrudRepository<BankEntity, BankId> {
 
     BankEntity findBankByBankId_Id(long id);
 
+    boolean existsByBankId_Id(long bankId);
 }

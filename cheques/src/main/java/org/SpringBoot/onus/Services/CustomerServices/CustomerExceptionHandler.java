@@ -1,6 +1,7 @@
 package org.SpringBoot.onus.Services.CustomerServices;
 
 import org.SpringBoot.onus.Exceptions.CustomerExceptions.CustomerAlreadyExistsWithinBankException;
+import org.SpringBoot.onus.Exceptions.CustomerExceptions.CustomerDoesNotExistException;
 import org.SpringBoot.onus.Exceptions.CustomerExceptions.NameWithNullValueException;
 import org.SpringBoot.onus.Exceptions.CustomerExceptions.NationalIdIsNullException;
 import org.springframework.http.HttpStatus;
@@ -24,5 +25,10 @@ public class CustomerExceptionHandler {
     @ExceptionHandler(value = NationalIdIsNullException.class)
     public static ResponseEntity<Object> handleNationalIdIsNullException(NationalIdIsNullException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(value = CustomerDoesNotExistException.class)
+    public static ResponseEntity<Object> handleCustomerDoesNotExistException(CustomerDoesNotExistException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

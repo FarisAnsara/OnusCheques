@@ -3,14 +3,13 @@ package org.SpringBoot.onus.Services.CustomerServices;
 import org.SpringBoot.onus.Models.CustomerModels.CreateCustomerRequest;
 import org.SpringBoot.onus.Repositories.BankRepository;
 import org.SpringBoot.onus.Repositories.BranchRepository;
-import org.SpringBoot.onus.Repositories.CustomerEntityRepository;
-import org.SpringBoot.onus.entities.CustomerEntity;
+import org.SpringBoot.onus.Repositories.CustomerRepository;
 
 public interface CustomerService {
-    public CustomerEntity loadBranch(
+    public org.SpringBoot.onus.entities.CustomerEntity loadBranch(
             CreateCustomerRequest createCustomerRequest,
             BankRepository bankRepository,
             BranchRepository branchRepository,
-            CustomerEntityRepository customerEntityRepository
+            CustomerRepository customerRepository
     );
 }

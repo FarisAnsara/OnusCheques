@@ -3,10 +3,9 @@ package org.SpringBoot.onus.Controllers;
 import org.SpringBoot.onus.Models.CustomerModels.CreateCustomerRequest;
 import org.SpringBoot.onus.Repositories.BankRepository;
 import org.SpringBoot.onus.Repositories.BranchRepository;
-import org.SpringBoot.onus.Repositories.CustomerEntityRepository;
+import org.SpringBoot.onus.Repositories.CustomerRepository;
 import org.SpringBoot.onus.Services.CustomerServices.CustomerService;
 import org.SpringBoot.onus.Services.CustomerServices.CutomerServiceImpl;
-import org.SpringBoot.onus.entities.CustomerEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,28 +18,28 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/customers")
-public class CustomerEntityController {
+public class CustomerController {
 
-    CustomerEntityRepository customerEntityRepository;
+    CustomerRepository customerRepository;
     BranchRepository branchRepository;
     BankRepository bankRepository;
     CustomerService customerService = new CutomerServiceImpl();
 
-    public CustomerEntityController(CustomerEntityRepository customerEntityRepository, BranchRepository branchRepository, BankRepository bankRepository) {
-        this.customerEntityRepository = customerEntityRepository;
+    public CustomerController(CustomerRepository customerRepository, BranchRepository branchRepository, BankRepository bankRepository) {
+        this.customerRepository = customerRepository;
         this.branchRepository = branchRepository;
         this.bankRepository = bankRepository;
 
     }
 
     @GetMapping
-    public ResponseEntity<List<CustomerEntity>> getCustomers() {
-        return ResponseEntity.accepted().body((List<CustomerEntity>) customerEntityRepository.findAll());
+    public ResponseEntity<List<org.SpringBoot.onus.entities.CustomerEntity>> getCustomers() {
+        return ResponseEntity.accepted().body((List<org.SpringBoot.onus.entities.CustomerEntity>) customerRepository.findAll());
     }
 
     @PostMapping
-    public ResponseEntity<CustomerEntity> addCustomer(@RequestBody CreateCustomerRequest customerRequest){
-        CustomerEntity createdCustomerEntity = customerService.loadBranch(customerRequest, bankRepository, branchRepository, customerEntityRepository);
+    public ResponseEntity<org.SpringBoot.onus.entities.CustomerEntity> addCustomer(@RequestBody CreateCustomerRequest customerRequest){
+        org.SpringBoot.onus.entities.CustomerEntity createdCustomerEntity = customerService.loadBranch(customerRequest, bankRepository, branchRepository, customerRepository);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomerEntity);
     }
 
