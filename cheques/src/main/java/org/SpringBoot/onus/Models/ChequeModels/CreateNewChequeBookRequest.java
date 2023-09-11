@@ -1,15 +1,15 @@
 package org.SpringBoot.onus.Models.ChequeModels;
 
-public class CreateChequeRequest {
+public class CreateNewChequeBookRequest {
 
     private long bankId;
     private long branchId;
     private long accountNumber;
 
-    public CreateChequeRequest() {
+    public CreateNewChequeBookRequest() {
     }
 
-    public CreateChequeRequest(String serialNumber, long bankId, long branchId, long accountNumber) {
+    public CreateNewChequeBookRequest(String serialNumber, long bankId, long branchId, long accountNumber) {
         this.bankId = bankId;
         this.branchId = branchId;
         this.accountNumber = accountNumber;

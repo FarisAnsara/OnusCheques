@@ -9,4 +9,8 @@ public interface ChequeRepository extends CrudRepository<ChequeEntity, Long> {
     @Query("SELECT MAX(cast(c.serialNumber as long)) from ChequeEntity c")
     Long findMaxBranchId();
 
+    boolean existsBySerialNumber(String serialNumber);
+
+    ChequeEntity findBySerialNumber(String serialNumber);
+
 }

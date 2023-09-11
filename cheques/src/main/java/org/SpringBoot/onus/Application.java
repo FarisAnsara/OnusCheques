@@ -4,6 +4,10 @@ package org.SpringBoot.onus;
 import org.SpringBoot.onus.Controllers.BankController;
 //import org.SpringBoot.onus.Controllers.BranchController;
 import org.SpringBoot.onus.Controllers.BranchController;
+import org.SpringBoot.onus.Controllers.CustomerController;
+import org.SpringBoot.onus.Models.BranchModels.CreateBranchRequest;
+import org.SpringBoot.onus.Models.CustomerModels.CreateCustomerRequest;
+import org.SpringBoot.onus.Repositories.CustomerRepository;
 import org.SpringBoot.onus.entities.BankEntity;
 import org.SpringBoot.onus.Models.BankModels.BankId;
 import org.SpringBoot.onus.entities.BranchEntity;
@@ -33,15 +37,17 @@ public class Application {
     }
 
     @Bean
-    CommandLineRunner init(BranchRepository branchRepository , BankRepository bankRepository) {
+    CommandLineRunner init(BranchRepository branchRepository , BankRepository bankRepository, CustomerRepository customerRepository) {
         BranchController branchController = new BranchController(branchRepository, bankRepository);
+        CustomerController customerController = new CustomerController(customerRepository, branchRepository, bankRepository);
         BankController bankController = new BankController(bankRepository);
         BankId bankId= new BankId(0,"HSBC");
         BankId bank2Id = new BankId(0,"Santander");
         BankEntity bankEntity = new BankEntity(bankId);
         BankEntity bankEntity2 = new BankEntity(bank2Id);
-        BranchId branchId = new BranchId(0, bankEntity,"London");
-        BranchEntity branchEntity = new BranchEntity(branchId);
+        CreateBranchRequest branchId = new CreateBranchRequest(1,"London",1);
+        CreateCustomerRequest customerRequest1 = new CreateCustomerRequest(2000000221, "Tarik", "Ibrahim", "Daoud", "Ansara", 250, "Active", 1);
+        CreateCustomerRequest customerRequest2 = new CreateCustomerRequest(2000000121, "Faris", "Ibrahim", "Daoud", "Ansara", 250, "Active", 1);
         return args -> {
 //            customerController.addUser(user);
 //            customerController.addUser(user2);
@@ -49,7 +55,9 @@ public class Application {
 //            customerRepository.save(user2);
             bankController.addBank(bankEntity);
             bankController.addBank(bankEntity2);
-//            branchController.addBranch(branchEntity);
+            branchController.addBranch(branchId);
+            customerController.addCustomer(customerRequest1);
+            customerController.addCustomer(customerRequest2);
         };
     }
 }
