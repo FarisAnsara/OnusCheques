@@ -1,0 +1,80 @@
+<div class="home-container">
+    <button (click)="toggleSubMeny()" class="btn-toggle">Toggle Menu</button>
+    <div *ngIf="showMenu" class="menu-container">
+        <mat-sidenav-container class="sidenav">
+            <mat-nav-list>
+                <ul class="menu-list">
+                    <li *ngFor="let item of menuSideBar" class="menu-item">
+                        <a [routerLink]="[item.link]" class="menu-link">
+                            <mat-icon>{{ item.icon }}</mat-icon>
+                            {{ item.linkName }}
+                        </a>
+                    </li>
+                </ul>
+            </mat-nav-list>
+        </mat-sidenav-container>
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+
+<!--<head>-->
+<!--    <title>-->
+<!--        ProgressBank-->
+<!--            </title>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<mat-sidenav-container class="sidenav">-->
+<!--    <mat-sidenav mode = "side" opened class = "tp-section">-->
+<!--        <div *ngFor="let item of menuSideBar" #itemEl routerLink="active">-->
+<!--        <section>-->
+<!--            <span routerLink="/banks" class="btn btn-info">Branches</span>-->
+<!--        </section>-->
+<!--        <section>-->
+<!--            <span routerLink="/branches" class="btn btn-info">Branches</span>-->
+<!--        </section>-->
+<!--        <section>-->
+<!--            <span routerLink="/customer" class="btn btn-info">Customers</span>-->
+<!--        </section>-->
+<!--        <section>-->
+<!--            <span routerLink="/cheques" class="btn btn-info">Cheques</span>-->
+<!--        </section>-->
+<!--        </div>-->
+<!--    </mat-sidenav>-->
+<!--    <mat-sidenav-content>-->
+<!--        <section class="section">-->
+<!--            <div class="box-main">-->
+<!--                <div class = "introduction"> &lt;!&ndash; this is the first half&ndash;&gt;-->
+<!--                    <h1 class="text-big" id="intro">-->
+<!--                        Welcome to ProgressBank-->
+<!--                    </h1>-->
+<!--                    <p class="text-big-hello-banker">-->
+<!--                        Hello banker-->
+<!--                    </p>-->
+<!--                    <p class="text-small">-->
+<!--                        ProgressBank is a bank that specializes-->
+<!--                        in cheque transfers between customers.-->
+<!--                        Our main specialty is ONUS cheques which-->
+<!--                        are cheques that can are-->
+<!--                        transferred within the bank.-->
+<!--                        We are currently working on-->
+<!--                        different types of cheque-->
+<!--                        transfers but for now,-->
+<!--                    </p>-->
+<!--                    <p class="text-big-enjoy">-->
+<!--                        ENJOY.-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--        <footer class="background">-->
+<!--            <p class="text-footer">-->
+<!--                Copyright ©-All rights are reserved-->
+<!--            </p>-->
+<!--        </footer>-->
+<!--    </mat-sidenav-content>-->
+<!--</mat-sidenav-container>-->
+
+
+<!--</body>-->

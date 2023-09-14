@@ -9,8 +9,7 @@ import org.SpringBoot.onus.Repositories.BankRepository;
 public class BankControllerImpl implements BankService{
 
     @Override
-    public BankEntity loadBank(BankEntity bankEntity, BankRepository bankRepository) {
-        String bankName = bankEntity.getBankId().getName();
+    public BankEntity loadBank(String bankName, BankRepository bankRepository) {
         ifBankNameNullThrow(bankName);
         BankEntity checkBankEntity = bankRepository.findByName(bankName);
         if (checkBankEntity != null)

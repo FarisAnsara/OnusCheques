@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/banks")
+@CrossOrigin(origins ="*")
+@RequestMapping(value = "/bank-post-and-get")
 public class BankController {
 
     private final BankRepository bankRepository;
@@ -32,8 +33,8 @@ public class BankController {
     }
 
     @PostMapping()
-    public ResponseEntity<BankEntity> addBank(@RequestBody BankEntity bankEntity) throws BankAlreadyExistsException, BankIsInvalidException {
-        BankEntity newBankEntity = bankService.loadBank(bankEntity, bankRepository);
+    public ResponseEntity<BankEntity> addBank(@RequestBody String name) throws BankAlreadyExistsException, BankIsInvalidException {
+        BankEntity newBankEntity = bankService.loadBank(name, bankRepository);
         return ResponseEntity.status(HttpStatus.CREATED).body(newBankEntity);
     }
 

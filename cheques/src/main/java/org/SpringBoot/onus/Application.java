@@ -53,11 +53,11 @@ public class Application {
 //            customerController.addUser(user2);
 //            customerRepository.save(user);
 //            customerRepository.save(user2);
-            bankController.addBank(bankEntity);
-            bankController.addBank(bankEntity2);
-            branchController.addBranch(branchId);
-            customerController.addCustomer(customerRequest1);
-            customerController.addCustomer(customerRequest2);
+//            bankController.addBank(bankEntity);
+//            bankController.addBank(bankEntity2);
+//            branchController.addBranch(branchId);
+//            customerController.addCustomer(customerRequest1);
+//            customerController.addCustomer(customerRequest2);
         };
     }
 }

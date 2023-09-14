@@ -1,0 +1,53 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.btn-toggle {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.menu-container {
+    flex: 1;
+    display: flex;
+}
+
+.sidenav {
+    background-color: #333;
+    color: white;
+    width: 300px;
+    padding: 20px;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-item {
+    margin-bottom: 10px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.2s ease;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.menu-link:hover {
+    background-color: #555;
+}
+
+mat-icon {
+    margin-right: 10px;
+}
