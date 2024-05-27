@@ -53,11 +53,5 @@ Onus Cheques is a web application designed to manage and process cheques efficie
 - **PUT /users/:id**: Update a specific user by ID.
 - **DELETE /users/:id**: Delete a specific user by ID.
 
-## Contributing
-Contributions are welcome! Please fork this repository and submit a pull request for any enhancements or bug fixes.
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
 ## Contact
 For any inquiries, please contact [Faris Ansara](https://github.com/FarisAnsara).
